@@ -1,5 +1,6 @@
 import { db } from "../config/db.js";
 import { io } from "../config/socket.js";
+import ApiError from "../utils/apiError.js";
 
 export const getCandlestickData = async (req, res) => {
     try {
@@ -21,10 +22,9 @@ export const getCandlestickData = async (req, res) => {
         return res.status(200).json({ message: "Data fetch Successfully", data: data });
 
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ error: 'Server Error', details: error.message });
+        next(error)
     }
-}
+};
 
 export const createCandlestickData = async (req, res) => {
     try {
@@ -37,7 +37,7 @@ export const createCandlestickData = async (req, res) => {
             typeof close !== "number" ||
             typeof volume !== "number"
         ) {
-            return res.status(400).json({ error: "Invalid input data. Numbers are required." });
+            throw new ApiError(400, "Invalid input data. Numbers are required.");
         }
 
         const collection = db.collection('candlestickData');
@@ -55,10 +55,9 @@ export const createCandlestickData = async (req, res) => {
 
         io.emit('newCandlestick', newData);
 
-        return res.status(201).json({ message: "Data Stored", data: newData });
+        return res.status(201).json({ message: "Data Stored successfully", data: newData });
 
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ error: 'Server Error', details: error.message });
+        next(error)
     }
-}
+};
