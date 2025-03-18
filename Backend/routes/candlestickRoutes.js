@@ -1,4 +1,4 @@
-import express from 'express'
+import express from 'express';
 import { createCandlestickData, getCandlestickData } from '../controllers/candleStickController.js';
 
 const router = express.Router();

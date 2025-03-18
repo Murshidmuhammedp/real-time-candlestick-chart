@@ -79,4 +79,5 @@ const CandlestickChart = () => {
     );
 };
 
-export default CandlestickChart;
+
+export default CandlestickChart
