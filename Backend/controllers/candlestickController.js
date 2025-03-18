@@ -28,12 +28,22 @@ export const getCandlestickData = async (req, res) => {
 
 export const createCandlestickData = async (req, res) => {
     try {
-        const { timestamp, open, high, low, close, volume } = req.query;
+        const { open, high, low, close, volume } = req.body;
+
+        if (
+            typeof open !== "number" ||
+            typeof high !== "number" ||
+            typeof low !== "number" ||
+            typeof close !== "number" ||
+            typeof volume !== "number"
+        ) {
+            return res.status(400).json({ error: "Invalid input data. Numbers are required." });
+        }
 
         const collection = db.collection('candlestickData');
 
         const newData = {
-            timestamp: new Date(timestamp),
+            timestamp: new Date(),
             open,
             high,
             low,
