@@ -4,8 +4,7 @@ import ApiError from "../utils/apiError.js";
 
 export const getCandlestickData = async (req, res) => {
     try {
-        const { startTime, endTime, timeframe } = req.query;
-
+        const { startTime, endTime, timeFrame } = req.query;
         const collection = db.collection('candlestickData');
 
         var query = {};

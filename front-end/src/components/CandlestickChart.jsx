@@ -12,18 +12,20 @@ const CandlestickChart = () => {
     const { data, status } = useSelector((state) => state.data);
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
+    const [timeFrame, setTimeframe] = useState('');
+    const timeframes = ["1m", "5m", "15m", "1h", "1d"]
 
     useEffect(() => {
-        dispatch(fetchData({ startTime, endTime }));
+        dispatch(fetchData({ startTime, endTime, timeFrame }));
 
         socket.on('newCandlestick', (newData) => {
-            dispatch(fetchData({ startTime, endTime }));
+            dispatch(fetchData({ startTime, endTime, timeFrame }));
         });
 
         return () => {
             socket.off('newCandlestick');
         };
-    }, [dispatch, startTime, endTime]);
+    }, [dispatch, startTime, endTime, timeFrame]);
 
     const chartOptions = {
         chart: {
@@ -72,8 +74,17 @@ const CandlestickChart = () => {
                 {status === 'loading' ? (
                     <p className="text-white text-center">Loading...</p>
                 ) : (
-                    <Chart type="candlestick" series={series} options={chartOptions} height="600px" />
+                    <Chart type="candlestick" series={series} options={chartOptions} height="580px" />
                 )}
+            </div>
+            <div className='w-full h-10 flex items-center justify-center gap-10 p-2'>
+                {timeframes.map((time, index) => (
+                    <button
+                        key={index}
+                        value={time}
+                        onClick={(e) => setTimeframe(e.target.value)}
+                        className='text-white bg-gray-800 h-7 w-10 border rounded-xl hover:bg-gray-900'>{time}</button>
+                ))}
             </div>
         </div>
     );

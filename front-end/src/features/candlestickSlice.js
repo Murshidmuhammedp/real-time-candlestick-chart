@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
 
-export const fetchData = createAsyncThunk('candlestick/fetchdata', async ({ startTime, endTime }) => {
-    const response = await axios.get(`http://localhost:4004/api/candlestick?startTime=${startTime}&endTime=${endTime}`);
+export const fetchData = createAsyncThunk('candlestick/fetchdata', async ({ startTime, endTime, timeFrame }) => {
+    const response = await axios.get(`http://localhost:4004/api/candlestick?startTime=${startTime}&endTime=${endTime}&timeFrame=${timeFrame}`);
     return response.data.data;
 });
 
