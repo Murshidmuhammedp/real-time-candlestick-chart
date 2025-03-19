@@ -36,25 +36,23 @@ MongoDB – Database
 
 Socket.io – WebSocket for real-time updates
 
+Mongoose – MongoDB object modeling
 
 📥 Installation & Setup
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/Murshidmuhammedp/real-time-candlestick-chart.git
-
-cd real-time-candlestick-chart
+git clone https://github.com/your-username/candlestick-chart.git
+cd candlestick-chart
 
 2️⃣ Backend Setup
 
-cd Backend  # Navigate to backend folder
-
+cd backend  # Navigate to backend folder
 npm install  # Install dependencies
 
 Create a .env file inside backend/ and configure the following:
 
 PORT=4004
-
 MONGO_URI=your_mongodb_connection_string
 
 Run the backend server:
@@ -63,13 +61,12 @@ npm start
 
 3️⃣ Frontend Setup
 
-cd front-end  # Navigate to frontend folder
-
+cd frontend  # Navigate to frontend folder
 npm install  # Install dependencies
 
 Run the React app:
 
-npm run dev
+npm start
 
 🏗️ Architecture Overview
 
@@ -79,7 +76,7 @@ The backend exposes a REST API that allows fetching candlestick data.
 
 It listens for new candlestick entries and broadcasts updates via Socket.io.
 
-Data is stored in MongoDB.
+Data is stored in MongoDB, using Mongoose for schema management.
 
 Frontend Architecture:
 
