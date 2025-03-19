@@ -64,7 +64,7 @@ const CandlestickChart = () => {
                 />
                 <button
                     onClick={() => dispatch(fetchData({ startTime, endTime }))}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg w-full sm:w-auto"
+                    className="px-4 py-2 bg-blue-500 text-white rounded-lg w-full sm:w-auto hover:bg-blue-600 transition"
                 >
                     Fetch Data
                 </button>
@@ -77,13 +77,14 @@ const CandlestickChart = () => {
                     <Chart type="candlestick" series={series} options={chartOptions} height="580px" />
                 )}
             </div>
-            <div className='w-full h-10 flex items-center justify-center gap-10 p-2'>
+
+            <div className='w-full mt-6 flex flex-wrap items-center justify-center gap-4 p-2'>
                 {timeframes.map((time, index) => (
                     <button
                         key={index}
                         value={time}
                         onClick={(e) => setTimeframe(e.target.value)}
-                        className='text-white bg-gray-800 h-7 w-10 border rounded-xl hover:bg-gray-900'>{time}</button>
+                        className='text-white bg-gray-800 h-7 w-10 border rounded-xl hover:bg-gray-900 transition text-sm sm:text-base'>{time}</button>
                 ))}
             </div>
         </div>
