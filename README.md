@@ -41,9 +41,9 @@ Socket.io – WebSocket for real-time updates
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/Murshidmuhammedp/real-time-candlestick-chart.git
+`git clone https://github.com/Murshidmuhammedp/real-time-candlestick-chart.git`
 
-cd real-time-candlestick-chart
+`cd real-time-candlestick-chart`
 
 2️⃣ Backend Setup
 
