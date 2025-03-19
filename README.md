@@ -40,10 +40,11 @@ Socket.io – WebSocket for real-time updates
 📥 Installation & Setup
 
 1️⃣ Clone the Repository
+```
+git clone https://github.com/Murshidmuhammedp/real-time-candlestick-chart.git
 
-`git clone https://github.com/Murshidmuhammedp/real-time-candlestick-chart.git`
-
-`cd real-time-candlestick-chart`
+cd real-time-candlestick-chart
+```
 
 2️⃣ Backend Setup
 ```
@@ -53,25 +54,25 @@ npm install  # Install dependencies
 ```
 
 Create a .env file inside backend/ and configure the following:
-
+```
 PORT=4004
 
 MONGO_URI=your_mongodb_connection_string
-
+```
 Run the backend server:
-
+```
 npm start
-
+```
 3️⃣ Frontend Setup
+```
+cd front-end  #Navigate to frontend folder
 
-cd front-end  # Navigate to frontend folder
-
-npm install  # Install dependencies
-
+npm install  #Install dependencies
+```
 Run the React app:
-
+```
 npm run dev
-
+```
 🏗️ Architecture Overview
 
 Backend Architecture:
