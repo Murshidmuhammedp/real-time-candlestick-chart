@@ -2,7 +2,7 @@ import { db } from "../config/db.js";
 import { io } from "../config/socket.js";
 import ApiError from "../utils/apiError.js";
 
-export const getCandlestickData = async (req, res) => {
+export const getCandlestickData = async (req, res, next) => {
     try {
         const { startTime, endTime, timeFrame } = req.query;
         const collection = db.collection('candlestickData');
@@ -14,6 +14,31 @@ export const getCandlestickData = async (req, res) => {
                 $gte: new Date(startTime),
                 $lte: new Date(endTime),
             };
+        } else if (timeFrame) {
+            const now = new Date();
+            let startTimeFilter;
+
+            switch (timeFrame) {
+                case "1m":
+                    startTimeFilter = new Date(now.getTime() - 1 * 60 * 1000);
+                    break;
+                case "5m":
+                    startTimeFilter = new Date(now.getTime() - 5 * 60 * 1000);
+                    break;
+                case "15m":
+                    startTimeFilter = new Date(now.getTime() - 15 * 60 * 1000);
+                    break;
+                case "1h":
+                    startTimeFilter = new Date(now.getTime() - 60 * 60 * 1000);
+                    break;
+                case "1d":
+                    startTimeFilter = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+                    break;
+                default:
+                    return res.status(400).json({ error: "Invalid timeframe" });
+            }
+
+            query.timestamp = { $gte: startTimeFilter };
         }
 
         const data = await collection.find(query).toArray();
@@ -25,7 +50,7 @@ export const getCandlestickData = async (req, res) => {
     }
 };
 
-export const createCandlestickData = async (req, res) => {
+export const createCandlestickData = async (req, res, next) => {
     try {
         const { open, high, low, close, volume } = req.body;
 
