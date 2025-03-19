@@ -42,11 +42,13 @@ Socket.io – WebSocket for real-time updates
 1️⃣ Clone the Repository
 
 git clone https://github.com/Murshidmuhammedp/real-time-candlestick-chart.git
+
 cd real-time-candlestick-chart
 
 2️⃣ Backend Setup
 
 cd Backend  # Navigate to backend folder
+
 npm install  # Install dependencies
 
 Create a .env file inside backend/ and configure the following:
